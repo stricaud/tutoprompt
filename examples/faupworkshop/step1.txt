@@ -1,0 +1,7 @@
+T Faup workshop, step 1
+C This tutorial is here to familiarize you with Faup, a tool which parses URLs.
+C First of all, let's have a look at what we get when running faup on a URL.
+C Please run the following command:
+E $ faup www.hack.lu
+R ,,www,hack.lu,hack,www.hack.lu,lu,,,,,mozilla_tld
+
