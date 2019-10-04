@@ -1,4 +1,17 @@
-#!/bin/bash
+#!/bin/bash -i
+#
+# We check the next step by reading a log file.
+# Wrap your command like this:
+# #!/bin/bash
+# CMD=$(basename $0)
+# echo "$CMD $@" > /tmp/command.tutoprompt
+# eval /opt/faup/$CMD "$@"
+#
+# Put the original command in /opt/faup/ (choose another directory of course ;-))
+#
+# Tutoprompt reads /tmp/command.tutoprompt to validate if we should go to the next step
+# 
+COMMAND_LOG=/tmp/command.tutoprompt
 
 TITLE="\e[1;44m"
 CONTENT="\e[44m"
@@ -15,9 +28,10 @@ function check_installed() {
     fi
 }
 
-function fetch_step() {
+function init_step() {
     if [ ! -e $HOME/.tutoprompt/step ]
     then
+	mkdir $HOME/.tutoprompt/
 	echo "1" > $HOME/.tutoprompt/step
     fi
 }
@@ -69,13 +83,46 @@ function print_all() {
     println $RESULT ",,www,hack.lu,hack,www.hack.lu,lu,,,,,mozilla_tld"
 }
 
+function current_step() {
+    return $(cat $HOME/.tutoprompt/step)
+}
+
+function next_step() {
+    current_step
+    local step=$(echo $?)
+    let "next=step+1"
+    return $next
+}
+
+function validate() {
+    last_cmd=$(history 2 |head -n1)
+#    last_cmd=$(history 2 | sed 's/^ *[^ ]* *//')
+    echo "last:$last_cmd"
+}
+
 # check_installed
 # if [ $? -eq 1 ]
 # then
 #     return
 # fi
 
-printfile examples/faupworkshop/step1.txt
+init_step
+
+# validate -> wrap faup to log command
+
+current_step
+step=$(echo $?)
+echo "step:$step"
+
+next_step
+step=$(echo $?)
+echo "step:$step"
+
+# Read log file
+# If it matches the actual step validation
+# 
+
+#printfile examples/faupworkshop/step1.txt
 
 
 
