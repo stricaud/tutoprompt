@@ -83,6 +83,12 @@ function print_all() {
     println $RESULT ",,www,hack.lu,hack,www.hack.lu,lu,,,,,mozilla_tld"
 }
 
+function congratulations() {
+    echo ""
+    println $TITLE "Congratulations"
+    println $CONTENT "You have finished the tutorial. You can go back to your usual business now!"
+}
+
 function current_step() {
     return $(cat $HOME/.tutoprompt/step)
 }
@@ -91,6 +97,7 @@ function next_step() {
     current_step
     local step=$(echo $?)
     let "next=step+1"
+    echo $next > $HOME/.tutoprompt/step
     return $next
 }
 
@@ -108,15 +115,16 @@ function validate() {
 
 init_step
 
+
 # validate -> wrap faup to log command
 
-current_step
-step=$(echo $?)
-echo "step:$step"
+# current_step
+# step=$(echo $?)
+# echo "step:$step"
 
-next_step
-step=$(echo $?)
-echo "step:$step"
+# next_step
+# step=$(echo $?)
+# echo "step:$step"
 
 # Read log file
 # If it matches the actual step validation
@@ -124,8 +132,28 @@ echo "step:$step"
 
 #printfile examples/faupworkshop/step1.txt
 
+if [ -e $COMMAND_LOG ]
+then
+    current_step
+    step=$(echo $?)
+    if [ ! -s $HOME/.tutoprompt/step$step.txt ]
+    then
+	echo "That file does not exist"
+	# That file does not exists, so we can congratulate
+#	export PROMPT_COMMAND=congratulations
+#	exit 0
+    else
+	echo "out step:$step"
+	/bin/bash $HOME/.tutoprompt/step$step-validate.sh "$(cat $COMMAND_LOG)"
+	if [ $? -eq 0 ]
+	then
+	    next_step	
+	fi
+    fi    
+fi
+
 
 
 #echo "$?"
-#export PROMPT_COMMAND=print_all
+export PROMPT_COMMAND=print_all
 
