@@ -1,0 +1,13 @@
+T Faup workshop, step 2
+C Congratulations, you are now familiar with faup!
+C Sometimes we noticed how hard it is to read fields in CSV. This is why
+C we created a json output. Simply use the -o json flag.
+E $ faup -o json www.hack.lu
+R {
+R        "scheme": "",
+R        "credential": "",
+R        "subdomain": "www",
+R        "domain": "hack.lu",
+R        "domain_without_tld": "hack",
+R ...
+

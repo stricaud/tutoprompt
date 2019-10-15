@@ -13,10 +13,31 @@
 # 
 COMMAND_LOG=/tmp/command.tutoprompt
 
+if [ "$1" == "--kill" ]
+then
+    unset PROMPT_COMMAND
+    return 0
+fi
+if [ "$1" == "--reset" ]
+then
+    echo "1" > $HOME/.tutoprompt/step
+    rm -f $COMMAND_LOG
+    return 0
+fi
+if [ "$1" == "--previous" ]
+then
+    return 0
+fi
+if [ "$1" == "--next" ] # Cheat ;)
+then
+    return 0
+fi
+
 TITLE="\e[1;44m"
 CONTENT="\e[44m"
 EXAMPLE="\e[93;44m"
 RESULT="\e[93;44m"
+TITLEBLINK="\e[5;44m"
 
 COLS=$(tput cols)
 
@@ -85,7 +106,7 @@ function print_all() {
 
 function congratulations() {
     echo ""
-    println $TITLE "Congratulations"
+    println $TITLEBLINK "Congratulations"
     println $CONTENT "You have finished the tutorial. You can go back to your usual business now!"
 }
 
@@ -115,45 +136,40 @@ function validate() {
 
 init_step
 
-
-# validate -> wrap faup to log command
-
-# current_step
-# step=$(echo $?)
-# echo "step:$step"
-
-# next_step
-# step=$(echo $?)
-# echo "step:$step"
-
-# Read log file
-# If it matches the actual step validation
-# 
-
-#printfile examples/faupworkshop/step1.txt
-
-if [ -e $COMMAND_LOG ]
-then
+function main() {
     current_step
     step=$(echo $?)
-    if [ ! -s $HOME/.tutoprompt/step$step.txt ]
+    
+    if [ -e $COMMAND_LOG ]
     then
-	echo "That file does not exist"
-	# That file does not exists, so we can congratulate
-#	export PROMPT_COMMAND=congratulations
-#	exit 0
-    else
-	echo "out step:$step"
-	/bin/bash $HOME/.tutoprompt/step$step-validate.sh "$(cat $COMMAND_LOG)"
-	if [ $? -eq 0 ]
+	# current_step
+	# step=$(echo $?)
+	# echo "step: $step"
+	
+	if [ ! -s $HOME/.tutoprompt/step$step.txt ]
 	then
-	    next_step	
-	fi
-    fi    
-fi
+	    congratulations
+	else
+	    #	    echo "out step:$step"
+	    COMMAND=$(cat $COMMAND_LOG)
+	    /bin/bash $HOME/.tutoprompt/step$step-validate.sh "$COMMAND"
+	    if [ $? -eq 0 ]
+	    then
+	    	next_step
+		step=$(echo $?)
+	    fi
+	    if [ ! -s $HOME/.tutoprompt/step$step.txt ]
+	    then
+		congratulations
+	    else	    
+		printfile $HOME/.tutoprompt/step$step.txt
+	    fi	    
+	fi    
+    else # COMMAND_LOG does not exists, we are at step 1, we print the first prompt
+	printfile $HOME/.tutoprompt/step$step.txt	
+    fi
+}
 
 
 
-#echo "$?"
-export PROMPT_COMMAND=print_all
-
+export PROMPT_COMMAND=main
