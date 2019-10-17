@@ -50,9 +50,13 @@ function check_installed() {
 }
 
 function init_step() {
-    if [ ! -e $HOME/.tutoprompt/step ]
+    if [ ! -d $HOME/.tutoprompt ]
     then
 	mkdir $HOME/.tutoprompt/
+    fi
+
+    if [ ! -e $HOME/.tutoprompt/step ]
+    then
 	echo "1" > $HOME/.tutoprompt/step
     fi
 }
