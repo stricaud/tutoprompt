@@ -24,12 +24,26 @@ then
     rm -f $COMMAND_LOG
     return 0
 fi
-if [ "$1" == "--previous" ]
+if [ "$1" == "--prev" ]
 then
+    current_step
+    step=$(echo $?)
+    if [ $step -ne 1 ]
+    then	
+	let "next=step-1"
+	echo $next > $HOME/.tutoprompt/step
+    fi
+	
     return 0
 fi
 if [ "$1" == "--next" ] # Cheat ;)
 then
+
+    current_step
+    step=$(echo $?)
+    let "next=step+1"
+    echo $next > $HOME/.tutoprompt/step
+
     return 0
 fi
 

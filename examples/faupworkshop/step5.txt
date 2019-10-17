@@ -1,0 +1,10 @@
+T Step 5: Reading from a pipes
+C Instead of pointing to a file, faup reads also from pipes
+C Use faup with the file fewurls.txt
+E $ cat fewurls.txt | faup -f domain_without_tld
+R slashdot
+R 127.0.0.42
+R hack
+R bl
+R mama
+R google

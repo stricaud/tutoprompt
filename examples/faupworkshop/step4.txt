@@ -1,0 +1,10 @@
+T Step 4: Reading from a file
+C Reading from a file is no different than reading from an argument.
+C Faup checks if the argument is a file first.
+C Use faup with the file fewurls.txt
+E $ faup -o json fewurls.txt
+R {
+R        "scheme": "https",
+R        "credential": "",
+R        "subdomain": "www",
+R   ...

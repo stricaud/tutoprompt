@@ -1,0 +1,6 @@
+T Step 3: Extracting a single field
+C It is possible to extract a single field, this is using the -f flag
+C Available fields are: scheme, credential, subdomain, domain, domain_without_tld
+C host, tld, port, resource_path, query_string, fragment, url_type
+E $ faup -f tld http://www.hack.lu
+R lu
