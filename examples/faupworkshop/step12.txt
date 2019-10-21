@@ -1,0 +1,6 @@
+T Step 12: UPPERCASE EVERYTHING
+C If you want, it is possible to uppercase
+C your URL before it is sent to Faup.
+C To do so, just enable the uppercase module.
+E faup $ modules enable uppercase.lua
+R Module 'uppercase.lua' enabled with success!

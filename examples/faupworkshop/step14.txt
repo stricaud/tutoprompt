@@ -1,0 +1,5 @@
+T Step 13: Disable a plugin
+C Plugins can be enabled/disabled at will.
+C Let's disable the uppercase.lua one
+E faup $ modules disable uppercase.lua
+R Module 'uppercase.lua' disabled with success!
