@@ -1,0 +1,12 @@
+T Step 8: All about CSV
+C The default CSV output may not be the best, so discover a few more options.
+C -d to change the separator character, -l to list the line number and -p to print the CSV headers
+E faup -d "\\|" -l -p fewurls.txt 
+R line|scheme|credential|subdomain|domain|domain_without_tld|host|tld|port|resource_path|query_string|fragment|url_type
+R 1|https||www|slashdot.org|slashdot|www.slashdot.org|org||/|||mozilla_tld
+R 2|http|||127.0.0.42|127.0.0.42|127.0.0.42||||||ipv4
+R 3|http||www|hack.42|hack|www.hack.42|42|||||unknown_tld
+R 4|http||www|bl.uk|bl|www.bl.uk|uk|||||mozilla_tld
+R 5|http||www2|mama.ogi.saga.jp|mama|www2.mama.ogi.saga.jp|ogi.saga.jp|||||mozilla_tld
+R 6|http||www|google.co.uk|google|www.google.co.uk|co.uk|||||mozilla_tld
+R 7|http|||servericn.math2.compute.amazonaws.com.cn|servericn|servericn.math2.compute.amazonaws.com.cn|math2.compute.amazonaws.com.cn|||||mozilla_tld

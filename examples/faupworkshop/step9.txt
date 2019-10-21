@@ -1,0 +1,8 @@
+T Step 9: Python URL Library
+C Python offers the URL Library to help decode URL
+C Let's use it!
+C Type: faup $ next to move to the next step
+E python3
+E >>> from urllib.parse import urlparse
+E >>> urlparse("http://www.hack.lu")
+E ParseResult(scheme='http', netloc='www.hack.lu', path='', params='', query='', fragment='')

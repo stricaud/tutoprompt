@@ -1,0 +1,7 @@
+T Step 10: Faup Python bindings
+C Faup provides Python bindings, they are being used by MISP and various other projects.
+C First, you need to install them, located in faup/src/lib/bindings/python.
+C Look how they parse a file containing 1 million URLs from parsepython2.py
+C Type: faup $ next to move to the next step
+E time python3 parsepython2.py
+

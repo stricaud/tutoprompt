@@ -1,0 +1,5 @@
+T Step 7: DNS Queries
+C When it comes to handling DNS queries, it is usual to have one that ends with a dot '.'
+C Faup helps with the -r flag to remove N numbers of characters.
+E faup -r 1 -f domain www.hack.lu.
+R hack.lu

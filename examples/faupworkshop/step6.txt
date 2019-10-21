@@ -1,0 +1,7 @@
+T Step 6: URL Types
+C There are 5 URL types (based on their TLD): 1) Mozilla 2) No TLD 3) Unknown TLD 4) IP v4 5) IP v6
+C They are given in the url_type field.
+C Can you identify in cases in which each can appear?
+C Type: faup $ next to move to the next step
+E $ faup -f url_type http://www.hack.lu
+R mozilla_tld
