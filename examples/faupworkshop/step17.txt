@@ -1,0 +1,11 @@
+T Step 17: Querying the Webserver
+C Use curl to make a query to the faup server that is running in
+C the background.
+C Type: faup $ next to move to the next step
+E curl http://localhost:9876/json?url=$(echo -n www.hack.lu |base64)
+R {
+R        "scheme": "",
+R        "credential": "",
+R        "subdomain": "www",
+R        "domain": "hack.lu",
+R ...

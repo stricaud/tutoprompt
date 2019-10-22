@@ -1,0 +1,6 @@
+T Step 16: Webserver
+C Faup can also run as a webserver to serve multiple clients
+C and also offer a flexible way to fetch parsed URLs
+C Run faup as a webserver in background
+E faup -b -w 0.0.0.0:9876
+

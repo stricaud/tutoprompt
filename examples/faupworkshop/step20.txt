@@ -1,0 +1,6 @@
+T Step 20: Working with Snapshots
+C Faup can actually a snapshot of a bunch of URLs, freezing them like
+C you have seen with Redis. Except it does not need Redis and you
+C can then exchange a single file.
+C Create a Snapshot from the Alexa top 1 million URLs
+E cat top-1m.csv | cut -d, -f2 | faup -q -s top1m

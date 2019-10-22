@@ -1,0 +1,5 @@
+T Step 21: How many things?
+C We want to know how many com are in this list
+E faup $ snapshot get top1m tld com
+R {"value": "com", "count": 427027, "first seen": "2019-10-21 21:48:24 -0700", "last seen": "2019-10-21 21:48:27 -0700"}
+

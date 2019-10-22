@@ -1,0 +1,3 @@
+T Step 19: Disable the redis module
+C Let's move one, please disable the Redis module
+

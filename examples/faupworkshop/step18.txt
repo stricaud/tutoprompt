@@ -1,0 +1,5 @@
+T Step 18: Check your redis
+C Check if this URL was stored or not in your
+C Redis instance.
+C Type: faup $ next to move to the next step
+
