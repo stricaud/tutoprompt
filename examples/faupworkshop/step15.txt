@@ -1,0 +1,12 @@
+T Step 15: Using modules to count in Redis
+C Faup can use Redis to do some sightings on
+C URL components. Execute redis in background,
+C then run faup on as many URLs as you want.
+C Use redis-cli to query the stored data.
+C Type: faup $ next to move to the next step
+E redis-server &
+E faup <urls>
+E redis-cli
+R KEYS *
+R GET tld::com
+

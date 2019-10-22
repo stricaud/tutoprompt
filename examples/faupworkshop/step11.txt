@@ -1,0 +1,6 @@
+T Step 11: LUA Modules
+C Faup provides LUA modules. They are scripts that can be used
+C everytime Faup is invocated, either before parsing or after.
+C Take a look at the different modules available.
+E faup $ modules list all
+
