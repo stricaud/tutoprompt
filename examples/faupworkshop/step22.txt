@@ -1,0 +1,5 @@
+T Step 22: Comparing snapshots
+C Create another snapshot with the URLs you want, such as fewurls.txt
+C and compare all the differences with top1m
+E faup -s fews -c top1m
+
